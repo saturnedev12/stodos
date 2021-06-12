@@ -14,8 +14,7 @@ class TaskManager {
     try {
       return await jsonDecode(await _readFile());
     } catch (e) {
-      print('file create');
-      // ignore: omit_local_variable_types
+      //print('file create');
       List dt = [
         {'title': 'elementZero'}
       ];
