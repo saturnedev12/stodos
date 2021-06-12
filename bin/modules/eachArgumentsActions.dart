@@ -12,14 +12,14 @@ argumentsActions(List arguments, TaskManager tskm) {
     try {
       stdout.write('update value: ');
       String tsk = stdin.readLineSync()!;
-      tskm.updateTask(int.parse(arguments[1]), tsk);
+      if (arguments[1] != 0) tskm.updateTask(int.parse(arguments[1]), tsk);
     } catch (e) {
       print('error');
     }
   } else if (arguments[0] == '--remove') {
     //remove one task
     try {
-      tskm.removeTask(int.parse(arguments[1]));
+      if (arguments[1] != 0) tskm.removeTask(int.parse(arguments[1]));
     } catch (e) {
       print("error");
     }
