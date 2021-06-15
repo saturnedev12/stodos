@@ -7,15 +7,18 @@ Stodos is a small, lightweight, high-quality utility created in Dart, for creati
 - steps for compile:
     - 1 ```cd /stodos/bin```
     - 2 ```dart compile exe stodos.dart -o [ name ]```
-    - 3 ```./name```
+    - 3 ```./name``` or just ```name```
 
 # *current features*
 
 - $```stotos``` (list all todos)
    - arguments 
-        - [ ```--add``` ] (insert new task)
-        - [ ```--update [index]``` ] (update a task with is index)
-        - [ ```--remove [index]``` ] (remove a task with is index)
+        - [ ```add``` ] (insert new task)
+        - [ ```update [index]``` ] (update a task with is index)
+        - [ ```remove [index]``` ] (remove a task with is index)
         - **index 0 dont allowed**
-
+- after **add** you can choice task level
+    - 0 for regular
+    - 1 for medium
+    - 2 for important
 
