@@ -30,14 +30,14 @@ argumentsActions(List arguments, TaskManager tskm) {
       String tsk = stdin.readLineSync()!;
       if (arguments[1] != 0) tskm.updateTask(int.parse(arguments[1]) + 1, tsk);
     } catch (e) {
-      print('error');
+      errorIndex();
     }
   } else if (arguments[0] == 'remove') {
     //remove one task
     try {
       if (arguments[1] != 0) tskm.removeTask(int.parse(arguments[1]));
     } catch (e) {
-      print('error');
+      errorIndex();
     }
   } else {
     print(
@@ -47,4 +47,8 @@ argumentsActions(List arguments, TaskManager tskm) {
         usage: stodos [add] [update] [remove] 
     ''');
   }
+}
+
+errorIndex() {
+  print(Colorize("the index must be a integer").red());
 }
