@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:io';
 import 'task.dart';
+import 'package:colorize/colorize.dart';
 
 class TaskManager {
   //dynamic path for file
@@ -24,9 +25,9 @@ class TaskManager {
 
   //insert new task in file
   // ignore: always_declare_return_types
-  insertTask(String text) async {
+  insertTask(String text, int level) async {
     List data = await (_checkAndGetData() as FutureOr<List<dynamic>>);
-    Task ts = new Task(title: text);
+    Task ts = new Task(title: text, level: level);
     data.add(ts.toMap());
     String res = await jsonEncode(data);
     await _writeFile(res);
@@ -34,10 +35,28 @@ class TaskManager {
 
   //lis all tasks from the file
   listTasks() async {
-    List data = await (_checkAndGetData() as FutureOr<List<dynamic>>);
-    for (var i = 1; i < data.length; i++) {
-      print(" $i.${data[i]['title']}");
+    List<List> choices = [[], [], []];
+    List result = ["00"];
+    List datas = await (_checkAndGetData() as FutureOr<List<dynamic>>);
+    for (var data in datas) {
+      if (data['level'] == 0) {
+        choices[0].add(Colorize(data['title']).green());
+      } else if (data['level'] == 1) {
+        choices[1].add(Colorize(data['title']).yellow());
+      } else if (data['level'] == 2) {
+        choices[2].add(Colorize(data['title']).red());
+      }
     }
+    for (var i = 0; i < choices.length; i++) {
+      for (var j = 0; j < choices[i].length; j++) {
+        result.add(choices[i][j]);
+      }
+    }
+    result = List.from(result.reversed);
+    for (var i = 0; i < result.length - 1; i++) {
+      print("${i + 1}. ${result[i]}");
+    }
+    //print(result);
   }
 
   //update a tasks by identity
