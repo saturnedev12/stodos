@@ -4,7 +4,6 @@ import 'modules/taskmanager.dart';
 
 void main(List<String> arguments) {
   TaskManager tskm = new TaskManager('.tasks.json');
-
   if (arguments.isNotEmpty) {
     argumentsActions(arguments, tskm);
   } else {
