@@ -39,6 +39,15 @@ argumentsActions(List arguments, TaskManager tskm) {
     } catch (e) {
       errorIndex();
     }
+  } else if (arguments[0] == '--help') {
+    print('''
+      usage: stodos [add] [update] [remove]
+          
+          add       (add new task in the list take and give level number)
+          update    (update a existing task by index)
+          remove    (remove a existing task by index) 
+
+    ''');
   } else {
     print(
         "stodos: '${arguments[0]}' is not a stodos command. See 'stodos --help'");
