@@ -19,7 +19,8 @@ argumentsActions(List arguments, TaskManager tskm) {
         tskm.insertTask(task, level);
       }
     } catch (e) {
-      print("error insert");
+      int level = 0;
+      tskm.insertTask(task, level);
     }
   } else if (arguments[0] == 'update') {
     //update task
@@ -38,5 +39,12 @@ argumentsActions(List arguments, TaskManager tskm) {
     } catch (e) {
       print('error');
     }
+  } else {
+    print(
+        "stodos: '${arguments[0]}' is not a stodos command. See 'stodos --help'");
+    print('''
+
+        usage: stodos [add] [update] [remove] 
+    ''');
   }
 }
