@@ -17,34 +17,37 @@ class TaskManager {
     } catch (e) {
       //print('file create');
       List dt = [
-        {'title': 'elementZero'}
+        {'title': 'elementZero', 'level': 3}
       ];
       return dt;
     }
   }
 
-  //insert new task in file
-  // ignore: always_declare_return_types
   insertTask(String text, int level) async {
     List data = await (_checkAndGetData() as FutureOr<List<dynamic>>);
+    //print(data);
     Task ts = new Task(title: text, level: level);
     data.add(ts.toMap());
+    //print(data);
+    data = await _rangeBylevel(data);
+    //print(data);
     String res = await jsonEncode(data);
     await _writeFile(res);
   }
 
-  //lis all tasks from the file
-  listTasks() async {
-    List<List> choices = [[], [], []];
-    List result = ["00"];
-    List datas = await (_checkAndGetData() as FutureOr<List<dynamic>>);
+// range all task by levels
+  _rangeBylevel(List datas) async {
+    List<List> choices = [[], [], [], []];
+    List result = [];
     for (var data in datas) {
       if (data['level'] == 0) {
-        choices[0].add(Colorize(data['title']).green());
+        choices[0].add(data);
       } else if (data['level'] == 1) {
-        choices[1].add(Colorize(data['title']).yellow());
+        choices[1].add(data);
       } else if (data['level'] == 2) {
-        choices[2].add(Colorize(data['title']).red());
+        choices[2].add(data);
+      } else if (data['level'] == 3) {
+        choices[3].add(data);
       }
     }
     for (var i = 0; i < choices.length; i++) {
@@ -53,17 +56,29 @@ class TaskManager {
       }
     }
     result = List.from(result.reversed);
-    for (var i = 0; i < result.length - 1; i++) {
-      print("${i + 1}. ${result[i]}");
+    return result;
+  }
+
+  //lis all tasks from the file by levels
+  listTasks() async {
+    List datas = await (_checkAndGetData() as FutureOr<List<dynamic>>);
+    for (var i = 1; i < datas.length; i++) {
+      if (datas[i]['level'] == 0) {
+        print(Colorize("$i-> ${datas[i]['title']}").green());
+      } else if (datas[i]['level'] == 1) {
+        print(Colorize("$i-> ${datas[i]['title']}").yellow());
+      } else if (datas[i]['level'] == 2) {
+        print(Colorize("$i-> ${datas[i]['title']}").red());
+      }
     }
-    //print(result);
   }
 
   //update a tasks by identity
-  updateTask(int index, String text) async {
+  updateTask(int index, String text, int level) async {
     List data = await (_checkAndGetData() as FutureOr<List<dynamic>>);
-    Task ts = new Task(title: text);
+    Task ts = new Task(title: text, level: level);
     data[index] = ts.toMap();
+    data = await _rangeBylevel(data);
     String res = await jsonEncode(data);
     await _writeFile(res);
   }
