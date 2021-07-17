@@ -35,6 +35,25 @@ argumentsActions(List arguments, TaskManager tskm) {
     }
   } else if (arguments[0] == '--help') {
     print('''
+                                                                     dddddddd                                  
+                          tttt                                       d::::::d                                  
+                       ttt:::t                                       d::::::d                                  
+                       t:::::t                                       d::::::d                                  
+                       t:::::t                                       d:::::d                                   
+    ssssssssss   ttttttt:::::ttttttt       ooooooooooo       ddddddddd:::::d    ooooooooooo       ssssssssss   
+  ss::::::::::s  t:::::::::::::::::t     oo:::::::::::oo   dd::::::::::::::d  oo:::::::::::oo   ss::::::::::s  
+ss:::::::::::::s t:::::::::::::::::t    o:::::::::::::::o d::::::::::::::::d o:::::::::::::::oss:::::::::::::s 
+s::::::ssss:::::stttttt:::::::tttttt    o:::::ooooo:::::od:::::::ddddd:::::d o:::::ooooo:::::os::::::ssss:::::s
+ s:::::s  ssssss       t:::::t          o::::o     o::::od::::::d    d:::::d o::::o     o::::o s:::::s  ssssss 
+   s::::::s            t:::::t          o::::o     o::::od:::::d     d:::::d o::::o     o::::o   s::::::s      
+      s::::::s         t:::::t          o::::o     o::::od:::::d     d:::::d o::::o     o::::o      s::::::s   
+ssssss   s:::::s       t:::::t    tttttto::::o     o::::od:::::d     d:::::d o::::o     o::::ossssss   s:::::s 
+s:::::ssss::::::s      t::::::tttt:::::to:::::ooooo:::::od::::::ddddd::::::ddo:::::ooooo:::::os:::::ssss::::::s
+s::::::::::::::s       tt::::::::::::::to:::::::::::::::o d:::::::::::::::::do:::::::::::::::os::::::::::::::s 
+ s:::::::::::ss          tt:::::::::::tt oo:::::::::::oo   d:::::::::ddd::::d oo:::::::::::oo  s:::::::::::ss  
+  sssssssssss              ttttttttttt     ooooooooooo      ddddddddd   ddddd   ooooooooooo     sssssssssss    
+                                                                                                               
+                                                                                                               
       usage: stodos [add] || [update] || [remove]
           
           add       (add new task in the list take and give level number)
